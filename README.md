@@ -8,7 +8,7 @@ This website, "The Nook," was developed as part of an HCI activity. In this acti
 ## Activity Details
 - **Course:** Human Computer Interaction
 - **Client:** Classmate (acted as the sample client)
-- **Developer:** [Your Name]
+- **Developer:** fjqruzer
 - **Purpose:** Practice gathering requirements, designing, and building a website based on client input, focusing on usability and user experience.
 
 ## Features
