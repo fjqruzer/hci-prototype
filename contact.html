@@ -61,7 +61,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Responsive Navbar -->
   <nav class="bg-amber-dark">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
@@ -72,13 +71,11 @@
           <span class="text-white ms-2 text-2xl font-bold titles">The Nook</span>
         </div>
         <div class="flex items-center">
-          <!-- Hamburger menu for mobile -->
           <button id="mobile-menu-button" class="sm:hidden text-white focus:outline-none ml-2">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <!-- Desktop nav links -->
           <div id="nav-links" class="hidden sm:flex space-x-2 ml-6 items-center">
             <a href="index.html" class="rounded-md px-3 py-2 text-sm font-bold text-white hover-gold" id="nav-home">Home</a>
             <a href="about.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-about">About</a>
@@ -93,7 +90,6 @@
             </a>
             <a href="contact.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-contact">Contact Us</a>
           </div>
-          <!-- User dropdown -->
           <div class="relative ml-3">
             <button id="user-menu-button" class="flex rounded-full bg-gray-800 text-sm focus:outline-hidden">
               <span class="sr-only">Open user menu</span>
@@ -110,7 +106,6 @@
           </div>
         </div>
       </div>
-      <!-- Mobile nav links -->
       <div id="mobile-menu" class="sm:hidden hidden bg-amber-dark rounded-b-lg px-2 pt-2 pb-3 space-y-1">
         <a href="index.html" class="block px-3 py-2 rounded-md text-base font-bold text-white hover-gold" id="mobile-nav-home">Home</a>
         <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold" id="mobile-nav-about">About</a>
@@ -128,19 +123,16 @@
     </div>
   </nav>
   <script>
-  // Mobile menu toggle
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   menuButton.addEventListener('click', function () {
     mobileMenu.classList.toggle('hidden');
   });
-  // User dropdown toggle
   const userMenuButton = document.getElementById('user-menu-button');
   const userDropdown = document.getElementById('user-dropdown');
   userMenuButton.addEventListener('click', function () {
     userDropdown.classList.toggle('hidden');
   });
-  // Active nav highlighting
   const page = window.location.pathname.split('/').pop();
   function setActiveNav(id) {
     document.querySelectorAll('#nav-home, #nav-about, #nav-store, #nav-contact, #nav-cart, #mobile-nav-home, #mobile-nav-about, #mobile-nav-store, #mobile-nav-contact, #mobile-nav-cart').forEach(el => {
