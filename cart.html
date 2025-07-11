@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+  <title>Cart - The Nook</title>
+  <style>
+    .titles { font-family: 'Playfair Display', serif; }
+    * { font-family: 'Raleway', sans-serif; }
+    .text-amber { color: #8A3324; }
+    .text-gold { color: #DAA520; }
+    .bg-amber { background-color: #8A3324; }
+    .bg-amber-dark { background-color: #6a2417; }
+    .bg-gold { background-color: #DAA520; }
+    .border-gold { border-color: #DAA520; }
+    .border-amber { border-color: #8A3324; }
+    .shadow-strong { box-shadow: 0 4px 24px 0 rgba(138,51,36,0.15); }
+    body { background-color: #FEFEFE; }
+    .nav-active {
+      background-color: #DAA520 !important;
+      color: #8A3324 !important;
+    }
+    .nav-active svg {
+      color: #8A3324 !important;
+      stroke: #8A3324 !important;
+    }
+    .hover-gold:hover { background-color: #DAA520 !important; color: #8A3324 !important; }
+    .hover-amber:hover { background-color: #8A3324 !important; color: #fff !important; }
+    .footer-link:hover { color: #DAA520 !important; }
+    .card {
+      background: #fff;
+      border: 2px solid #DAA520;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 24px 0 rgba(138,51,36,0.10);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .btn-amber {
+      background: #8A3324;
+      color: #fff;
+      border: 2px solid #DAA520;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-amber:hover, .btn-amber:focus {
+      background: #DAA520;
+      color: #8A3324;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="bg-amber-dark">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 text-amber-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-white ms-2 text-2xl font-bold titles">The Nook</span>
+        </div>
+        <a href="index.html" class="rounded-md bg-white px-3 py-2 text-sm font-bold text-amber">Home</a>
+      </div>
+    </div>
+  </nav>
+  <div class="max-w-3xl mx-auto py-10 px-4">
+    <h1 class="titles text-4xl font-semibold text-amber mb-8">Your Cart</h1>
+    <div id="cartItems"></div>
+    <div id="cartSummary" class="mt-8"></div>
+    <div id="checkoutSection" class="mt-10 hidden">
+      <h2 class="titles text-2xl font-semibold text-amber mb-4">Checkout</h2>
+      <div class="mb-4">
+        <p class="text-gray-700 font-medium">Pickup Location:</p>
+        <p class="text-gold font-semibold">Lyceum of Subic Bay<br>Lot 73, Argonaut Highway,<br>Subic Bay Freeport Zone, 2222 Zambales, Philippines</p>
+      </div>
+      <button id="placeOrderBtn" class="w-full bg-amber text-white py-3 rounded-md hover:bg-gold transition-colors text-lg font-semibold">Place Order</button>
+    </div>
+    <div id="confirmation" class="mt-10 hidden text-center">
+      <h2 class="titles text-2xl font-semibold text-amber mb-4">Thank you for your order!</h2>
+      <p class="text-gray-700">Your books will be ready for pickup at Lyceum of Subic Bay.</p>
+      <a href="index.html" class="mt-6 inline-block bg-amber text-white px-6 py-2 rounded hover:bg-gold">Back to Home</a>
+    </div>
+  </div>
+  <script>
+    function getCart() {
+      return JSON.parse(localStorage.getItem('cart') || '[]');
+    }
+    function setCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    function removeFromCart(id) {
+      let cart = getCart();
+      cart = cart.filter(item => item.id !== id);
+      setCart(cart);
+      renderCart();
+    }
+    function renderCart() {
+      const cart = getCart();
+      const cartItems = document.getElementById('cartItems');
+      const cartSummary = document.getElementById('cartSummary');
+      const checkoutSection = document.getElementById('checkoutSection');
+      const confirmation = document.getElementById('confirmation');
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<div class="text-gray-500">Your cart is empty.</div>';
+        cartSummary.innerHTML = '';
+        checkoutSection.classList.add('hidden');
+        return;
+      }
+      cartItems.innerHTML = cart.map(item => `
+        <div class="flex items-center gap-4 mb-6 bg-white rounded shadow p-4">
+          <img src="${item.image}" alt="${item.title}" class="w-20 h-28 object-cover rounded" />
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-amber">${item.title}</h3>
+            <p class="text-gray-700">${item.author}</p>
+            <p class="text-gold">${item.category}</p>
+            <p class="text-gray-700">$${item.price.toFixed(2)} x ${item.qty}</p>
+          </div>
+          <button onclick="removeFromCart(${item.id})" class="bg-amber text-white px-3 py-1 rounded hover:bg-gold">Remove</button>
+        </div>
+      `).join('');
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartSummary.innerHTML = `
+        <div class="flex justify-between items-center text-lg font-semibold">
+          <span>Total:</span>
+          <span class="text-amber">$${total.toFixed(2)}</span>
+        </div>
+        <button onclick="showCheckout()" class="mt-4 w-full bg-amber text-white py-2 rounded hover:bg-gold">Checkout</button>
+      `;
+      checkoutSection.classList.add('hidden');
+      confirmation.classList.add('hidden');
+    }
+    function showCheckout() {
+      document.getElementById('checkoutSection').classList.remove('hidden');
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+    document.getElementById('placeOrderBtn').onclick = function() {
+      localStorage.removeItem('cart');
+      document.getElementById('cartItems').innerHTML = '';
+      document.getElementById('cartSummary').innerHTML = '';
+      document.getElementById('checkoutSection').classList.add('hidden');
+      document.getElementById('confirmation').classList.remove('hidden');
+    };
+    renderCart();
+  </script>
+</body>
+</html> 

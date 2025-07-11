@@ -1,0 +1,480 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+   <!-- google fonts-->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+   <!-- raleway -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    .titles { font-family: 'Playfair Display', serif; }
+    * { font-family: 'Raleway', sans-serif; }
+    .text-amber { color: #8A3324; }
+    .text-gold { color: #DAA520; }
+    .bg-amber { background-color: #8A3324; }
+    .bg-amber-dark { background-color: #6a2417; }
+    .bg-gold { background-color: #DAA520; }
+    .border-gold { border-color: #DAA520; }
+    .border-amber { border-color: #8A3324; }
+    .shadow-strong { box-shadow: 0 4px 24px 0 rgba(138,51,36,0.15); }
+    body { background-color: #FEFEFE; }
+    .nav-active {
+      background-color: #DAA520 !important;
+      color: #8A3324 !important;
+    }
+    .nav-active svg {
+      color: #8A3324 !important;
+      stroke: #8A3324 !important;
+    }
+    .hover-gold:hover { background-color: #DAA520 !important; color: #8A3324 !important; }
+    .hover-amber:hover { background-color: #8A3324 !important; color: #fff !important; }
+    .footer-link:hover { color: #DAA520 !important; }
+    .card {
+      background: #fff;
+      border: 2px solid #DAA520;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 24px 0 rgba(138,51,36,0.10);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .btn-amber {
+      background: #8A3324;
+      color: #fff;
+      border: 2px solid #DAA520;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-amber:hover, .btn-amber:focus {
+      background: #DAA520;
+      color: #8A3324;
+    }
+
+    /* Hide mobile menu by default */
+    #mobile-menu {
+      display: none;
+    }
+
+    /* Show mobile menu when active */
+    #mobile-menu.active {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body>
+<!-- Responsive Navbar -->
+<nav class="bg-amber-dark">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-amber-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-white ms-2 text-2xl font-bold titles">The Nook</span>
+      </div>
+      <div class="flex items-center">
+        <!-- Hamburger menu for mobile -->
+        <button id="mobile-menu-button" class="sm:hidden text-white focus:outline-none ml-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <!-- Desktop nav links -->
+        <div id="nav-links" class="hidden sm:flex space-x-2 ml-6 items-center">
+          <a href="index.html" class="rounded-md px-3 py-2 text-sm font-bold text-white hover-gold" id="nav-home">Home</a>
+          <a href="about.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-about">About</a>
+          <a href="store.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-store">Store</a>
+          <a href="cart.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold flex items-center" id="nav-cart" aria-label="Cart">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0l1.7 6.385a2.25 2.25 0 002.183 1.693h7.063a2.25 2.25 0 002.183-1.693l1.7-6.385m-15.016 0h15.016" />
+              <circle cx="9" cy="20" r="1.25" />
+              <circle cx="17" cy="20" r="1.25" />
+            </svg>
+            <span class="sr-only">Cart</span>
+          </a>
+          <a href="contact.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-contact">Contact Us</a>
+        </div>
+        <!-- User dropdown -->
+        <div class="relative ml-3">
+          <button id="user-menu-button" class="flex rounded-full bg-gray-800 text-sm focus:outline-hidden">
+            <span class="sr-only">Open user menu</span>
+            <span class="size-8 rounded-full bg-white flex items-center justify-center text-amber font-bold">U</span>
+          </button>
+          <div id="user-dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute right-0 mt-2">
+            <ul class="py-2 text-sm text-amber">
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Your Profile</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a></li>
+              <li><span class="block px-4 py-2 text-gray-500">Notifications</span></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile nav links -->
+    <div id="mobile-menu" class="sm:hidden hidden bg-amber-dark rounded-b-lg px-2 pt-2 pb-3 space-y-1">
+      <a href="index.html" class="block px-3 py-2 rounded-md text-base font-bold text-white hover-gold" id="mobile-nav-home">Home</a>
+      <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold" id="mobile-nav-about">About</a>
+      <a href="store.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold" id="mobile-nav-store">Store</a>
+      <a href="cart.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold flex items-center" id="mobile-nav-cart" aria-label="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0l1.7 6.385a2.25 2.25 0 002.183 1.693h7.063a2.25 2.25 0 002.183-1.693l1.7-6.385m-15.016 0h15.016" />
+          <circle cx="9" cy="20" r="1.25" />
+          <circle cx="17" cy="20" r="1.25" />
+        </svg>
+        <span class="sr-only">Cart</span>
+      </a>
+      <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold" id="mobile-nav-contact">Contact Us</a>
+    </div>
+  </div>
+</nav>
+<script>
+// Mobile menu toggle
+const menuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+menuButton.addEventListener('click', function () {
+  mobileMenu.classList.toggle('hidden');
+});
+// User dropdown toggle
+const userMenuButton = document.getElementById('user-menu-button');
+const userDropdown = document.getElementById('user-dropdown');
+userMenuButton.addEventListener('click', function () {
+  userDropdown.classList.toggle('hidden');
+});
+// Active nav highlighting
+const page = window.location.pathname.split('/').pop();
+function setActiveNav(id) {
+  document.querySelectorAll('#nav-home, #nav-about, #nav-store, #nav-contact, #nav-cart, #mobile-nav-home, #mobile-nav-about, #mobile-nav-store, #mobile-nav-contact, #mobile-nav-cart').forEach(el => {
+    el.classList.remove('nav-active');
+  });
+  if (page === '' || page === 'index.html') {
+    document.getElementById('nav-home').classList.add('nav-active');
+    document.getElementById('mobile-nav-home').classList.add('nav-active');
+  } else if (page === 'about.html') {
+    document.getElementById('nav-about').classList.add('nav-active');
+    document.getElementById('mobile-nav-about').classList.add('nav-active');
+  } else if (page === 'store.html') {
+    document.getElementById('nav-store').classList.add('nav-active');
+    document.getElementById('mobile-nav-store').classList.add('nav-active');
+  } else if (page === 'contact.html') {
+    document.getElementById('nav-contact').classList.add('nav-active');
+    document.getElementById('mobile-nav-contact').classList.add('nav-active');
+  } else if (page === 'cart.html') {
+    document.getElementById('nav-cart').classList.add('nav-active');
+    document.getElementById('mobile-nav-cart').classList.add('nav-active');
+  }
+}
+setActiveNav();
+</script>
+
+<!-- Add circular search icon that expands -->
+<style>
+  #search-fab {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    transition: width 0.3s, background 0.3s;
+    background: #fff;
+    border-radius: 9999px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    padding: 0.5rem;
+    width: 3.5rem;
+    max-width: 95vw;
+    overflow: hidden;
+  }
+  #search-fab.expanded {
+    width: 18rem;
+    background: #fff;
+    padding: 0.5rem 1rem;
+  }
+  #search-fab input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 0;
+    opacity: 0;
+    transition: width 0.3s, opacity 0.3s;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+  #search-fab.expanded input {
+    width: 10rem;
+    opacity: 1;
+  }
+  #search-fab button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    #search-fab.expanded {
+      width: 90vw;
+    }
+    #search-fab.expanded input {
+      width: 60vw;
+    }
+  }
+</style>
+<div id="search-fab">
+  <button id="search-fab-btn" aria-label="Open search">
+    <svg id="search-fab-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+    </svg>
+  </button>
+  <input id="search-fab-input" type="text" placeholder="Search books..." />
+  <button id="search-fab-go" aria-label="Go" style="display:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+<script>
+const fab = document.getElementById('search-fab');
+const fabBtn = document.getElementById('search-fab-btn');
+const fabInput = document.getElementById('search-fab-input');
+const fabGo = document.getElementById('search-fab-go');
+let expanded = false;
+function expandFab() {
+  fab.classList.add('expanded');
+  fabInput.focus();
+  fabGo.style.display = 'flex';
+  expanded = true;
+}
+function collapseFab() {
+  fab.classList.remove('expanded');
+  fabInput.value = '';
+  fabGo.style.display = 'none';
+  expanded = false;
+}
+fabBtn.addEventListener('click', function(e) {
+  if (!expanded) {
+    expandFab();
+  } else {
+    collapseFab();
+  }
+});
+fabInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    goToStore();
+  } else if (e.key === 'Escape') {
+    collapseFab();
+  }
+});
+fabGo.addEventListener('click', goToStore);
+function goToStore() {
+  const query = fabInput.value.trim();
+  if (query) {
+    window.location.href = `store.html?search=${encodeURIComponent(query)}`;
+  } else {
+    window.location.href = 'store.html';
+  }
+  collapseFab();
+}
+document.addEventListener('click', function(e) {
+  if (expanded && !fab.contains(e.target)) {
+    collapseFab();
+  }
+});
+</script>
+
+<!-- 2. Promotional Banner (above hero) -->
+<section class="w-full bg-gradient-to-r from-gold to-amber-700 py-4 text-center">
+  <h2 class="titles text-xl sm:text-2xl font-bold text-white">Grand Opening Sale! 20% off all bestsellers this week only!</h2>
+</section>
+<!-- 3. Hero Section -->
+<div class="bg-white min-h-[60vh] flex flex-col justify-center" data-aos="fade-up">
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="mx-auto max-w-5xl py-5 sm:py-18 lg:py-10">
+      <div class="mb-8 flex justify-center">
+        <div class="relative rounded-full font-semibold px-3 py-1 text-gold ring-1 ring-gold hover:ring-amber">
+          Grand Opening: Discover your next favorite book at The Nook! <a href="store.html" class="font-bold text-amber"><span class="absolute inset-0" aria-hidden="true"></span>Shop now <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="text-center">
+        <h1 class="titles text-5xl font-semibold tracking-tight text-balance text-amber sm:text-7xl">Welcome to The Nook</h1>
+        <p class="mt-8 text-lg font-medium text-pretty text-gray-700 sm:text-xl/8">A cozy corner for book lovers. Explore curated collections, rare finds, and a warm community atmosphere. Your next adventure awaits on every shelf.</p>
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-4">
+          <a href="store.html" class="rounded-md bg-amber px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">Browse Store</a>
+          <a href="about.html" class="text-sm/6 font-semibold text-amber hover:text-gold">Learn more <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="mt-12 flex justify-center">
+          <img src="https://images.stockcake.com/public/a/a/e/aaef2e17-48e3-4ea1-98e8-265599d51864_large/cozy-reading-nook-stockcake.jpg" alt="Cozy bookshop" class="rounded-lg shadow-lg w-full max-w-md object-cover" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 4. Featured Books Preview (3-4 only) -->
+<section class="max-w-7xl mx-auto py-12 px-4" data-aos="zoom-in">
+  <h2 class="titles text-3xl font-semibold text-amber mb-6">Featured Books</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/The_Fault_in_Our_Stars.jpg" alt="The Fault in Our Stars" class="w-32 h-48 object-cover rounded mb-3" />
+      <h3 class="text-lg font-bold text-amber">The Fault in Our Stars</h3>
+      <p class="text-gray-700">John Green</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://upload.wikimedia.org/wikipedia/en/d/d1/Divergent_%28book%29_by_Veronica_Roth_US_Hardcover_2011.jpg" alt="Divergent" class="w-32 h-48 object-cover rounded mb-3" />
+      <h3 class="text-lg font-bold text-amber">Divergent</h3>
+      <p class="text-gray-700">Veronica Roth</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/The_Hunger_Games.jpg" alt="The Hunger Games" class="w-32 h-48 object-cover rounded mb-3" />
+      <h3 class="text-lg font-bold text-amber">The Hunger Games</h3>
+      <p class="text-gray-700">Suzanne Collins</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://upload.wikimedia.org/wikipedia/en/3/3b/The_Ballad_of_Songbirds_and_Snakes_%28Suzanne_Collins%29.png" alt="The Ballad of Songbirds and Snakes" class="w-32 h-48 object-cover rounded mb-3" />
+      <h3 class="text-lg font-bold text-amber">The Ballad of Songbirds and Snakes</h3>
+      <p class="text-gray-700">Suzanne Collins</p>
+    </div>
+  </div>
+  <div class="flex justify-center mt-6">
+    <a href="store.html" class="rounded-md bg-amber px-6 py-3 text-lg font-semibold text-white shadow hover:bg-gold">See All Books</a>
+  </div>
+</section>
+<!-- 5. Browse by Category (preview only) -->
+<section class="max-w-7xl mx-auto py-12 px-4" data-aos="fade-up">
+  <h2 class="titles text-3xl font-semibold text-amber mb-6">Browse by Category</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+    <div class="flex flex-col items-center bg-white rounded-lg shadow p-4 cursor-pointer hover:bg-amber-50">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Fiction" class="w-12 h-12 mb-2" />
+      <span class="text-amber font-semibold">Fiction</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-lg shadow p-4 cursor-pointer hover:bg-amber-50">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Nonfiction" class="w-12 h-12 mb-2" />
+      <span class="text-amber font-semibold">Nonfiction</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-lg shadow p-4 cursor-pointer hover:bg-amber-50">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Mystery" class="w-12 h-12 mb-2" />
+      <span class="text-amber font-semibold">Mystery</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-lg shadow p-4 cursor-pointer hover:bg-amber-50">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Romance" class="w-12 h-12 mb-2" />
+      <span class="text-amber font-semibold">Romance</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-lg shadow p-4 cursor-pointer hover:bg-amber-50">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Sci-Fi" class="w-12 h-12 mb-2" />
+      <span class="text-amber font-semibold">Sci-Fi</span>
+    </div>
+    <div class="flex flex-col items-center bg-white rounded-lg shadow p-4 cursor-pointer hover:bg-amber-50">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Fantasy" class="w-12 h-12 mb-2" />
+      <span class="text-amber font-semibold">Fantasy</span>
+    </div>
+  </div>
+  <div class="flex justify-center mt-6">
+    <a href="store.html" class="rounded-md bg-amber px-6 py-3 text-lg font-semibold text-white shadow hover:bg-gold">Browse All Categories</a>
+  </div>
+</section>
+<!-- 6. Testimonials (no images, new names) -->
+<section class="max-w-7xl mx-auto py-12 px-4" data-aos="fade-right">
+  <h2 class="titles text-3xl font-semibold text-amber mb-6">What Our Readers Say</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+      <p class="text-gray-700 italic mb-2">“The Nook has the best selection and the friendliest staff. I always find something new to read!”</p>
+      <span class="text-amber font-semibold">— Efren E.</span>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+      <p class="text-gray-700 italic mb-2">“Fast checkout and great prices. The online store is so easy to use!”</p>
+      <span class="text-amber font-semibold">— Ron P.</span>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+      <p class="text-gray-700 italic mb-2">“I love the recommendations and the cozy vibe. My favorite bookshop!”</p>
+      <span class="text-amber font-semibold">— John K.</span>
+    </div>
+  </div>
+</section>
+<!-- 7. Newsletter Signup -->
+<section class="max-w-2xl mx-auto py-12 px-4" data-aos="fade-up">
+  <div class="bg-white rounded-lg shadow-md p-8 flex flex-col items-center">
+    <h2 class="titles text-2xl font-semibold text-amber mb-4">Subscribe to Our Newsletter</h2>
+    <form class="w-full flex flex-col sm:flex-row gap-4">
+      <input type="email" placeholder="Your email address" class="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400" required />
+      <button type="submit" class="bg-amber text-white px-6 py-2 rounded hover:bg-gold font-semibold">Subscribe</button>
+    </form>
+  </div>
+</section>
+<!-- 8. Footer -->
+<footer class="bg-amber-dark text-white py-8 mt-16">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 gap-4">
+    <div class="flex flex-col items-center sm:items-start">
+      <span class="text-xl font-bold titles mb-2">The Nook</span>
+      <span>&copy; 2024 The Nook. All rights reserved.</span>
+    </div>
+    <div class="flex gap-6 mt-4 sm:mt-0">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="store.html" class="footer-link">Store</a>
+      <a href="cart.html" class="footer-link flex items-center" aria-label="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0l1.7 6.385a2.25 2.25 0 002.183 1.693h7.063a2.25 2.25 0 002.183-1.693l1.7-6.385m-15.016 0h15.016" />
+          <circle cx="9" cy="20" r="1.25" />
+          <circle cx="17" cy="20" r="1.25" />
+        </svg>
+        <span class="sr-only">Cart</span>
+      </a>
+      <a href="contact.html" class="footer-link">Contact</a>
+    </div>
+    <div class="flex gap-4 mt-4 sm:mt-0">
+      <a href="#" class="footer-link">Facebook</a>
+      <a href="#" class="footer-link">Instagram</a>
+      <a href="#" class="footer-link">Twitter</a>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIconClosed = menuButton.querySelector('svg.block');
+      const menuIconOpen = menuButton.querySelector('svg.hidden');
+
+      menuButton.addEventListener('click', function () {
+        const isOpen = mobileMenu.classList.toggle('active');
+        menuButton.setAttribute('aria-expanded', isOpen);
+        // Toggle icons
+        if (isOpen) {
+          menuIconClosed.classList.add('hidden');
+          menuIconClosed.classList.remove('block');
+          menuIconOpen.classList.add('block');
+          menuIconOpen.classList.remove('hidden');
+        } else {
+          menuIconClosed.classList.add('block');
+          menuIconClosed.classList.remove('hidden');
+          menuIconOpen.classList.add('hidden');
+          menuIconOpen.classList.remove('block');
+        }
+      });
+    });
+  </script>
+
+  <!--  Flowbite JS-->
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+  <title>Store - The Nook</title>
+  <style>
+    .titles { font-family: 'Playfair Display', serif; }
+    * { font-family: 'Raleway', sans-serif; }
+    .text-amber { color: #8A3324; }
+    .text-gold { color: #DAA520; }
+    .bg-amber { background-color: #8A3324; }
+    .bg-amber-dark { background-color: #6a2417; }
+    .bg-gold { background-color: #DAA520; }
+    .border-gold { border-color: #DAA520; }
+    .border-amber { border-color: #8A3324; }
+    .shadow-strong { box-shadow: 0 4px 24px 0 rgba(138,51,36,0.15); }
+    body { background-color: #FEFEFE; }
+    .nav-active {
+      background-color: #DAA520 !important;
+      color: #8A3324 !important;
+    }
+    .nav-active svg {
+      color: #8A3324 !important;
+      stroke: #8A3324 !important;
+    }
+    .hover-gold:hover { background-color: #DAA520 !important; color: #8A3324 !important; }
+    .hover-amber:hover { background-color: #8A3324 !important; color: #fff !important; }
+    .footer-link:hover { color: #DAA520 !important; }
+    .card {
+      background: #fff;
+      border: 2px solid #DAA520;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 24px 0 rgba(138,51,36,0.10);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .btn-amber {
+      background: #8A3324;
+      color: #fff;
+      border: 2px solid #DAA520;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-amber:hover, .btn-amber:focus {
+      background: #DAA520;
+      color: #8A3324;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Responsive Navbar -->
+  <nav class="bg-amber-dark">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 text-amber-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-white ms-2 text-2xl font-bold titles">The Nook</span>
+        </div>
+        <div class="flex items-center">
+          <!-- Hamburger menu for mobile -->
+          <button id="mobile-menu-button" class="sm:hidden text-white focus:outline-none ml-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <!-- Desktop nav links -->
+          <div id="nav-links" class="hidden sm:flex space-x-2 ml-6 items-center">
+            <a href="index.html" class="rounded-md px-3 py-2 text-sm font-bold text-white hover-gold" id="nav-home">Home</a>
+            <a href="about.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-about">About</a>
+            <a href="store.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-store">Store</a>
+            <a href="cart.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold flex items-center" id="nav-cart" aria-label="Cart">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0l1.7 6.385a2.25 2.25 0 002.183 1.693h7.063a2.25 2.25 0 002.183-1.693l1.7-6.385m-15.016 0h15.016" />
+                <circle cx="9" cy="20" r="1.25" />
+                <circle cx="17" cy="20" r="1.25" />
+              </svg>
+              <span class="sr-only">Cart</span>
+            </a>
+            <a href="contact.html" class="rounded-md px-3 py-2 text-sm font-medium text-white hover-gold" id="nav-contact">Contact Us</a>
+          </div>
+          <!-- User dropdown -->
+          <div class="relative ml-3">
+            <button id="user-menu-button" class="flex rounded-full bg-gray-800 text-sm focus:outline-hidden">
+              <span class="sr-only">Open user menu</span>
+              <span class="size-8 rounded-full bg-white flex items-center justify-center text-amber font-bold">U</span>
+            </button>
+            <div id="user-dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute right-0 mt-2">
+              <ul class="py-2 text-sm text-amber">
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Your Profile</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a></li>
+                <li><span class="block px-4 py-2 text-gray-500">Notifications</span></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile nav links -->
+      <div id="mobile-menu" class="sm:hidden hidden bg-amber-dark rounded-b-lg px-2 pt-2 pb-3 space-y-1">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-bold text-white hover-gold" id="mobile-nav-home">Home</a>
+        <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold" id="mobile-nav-about">About</a>
+        <a href="store.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold" id="mobile-nav-store">Store</a>
+        <a href="cart.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold flex items-center" id="mobile-nav-cart" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0l1.7 6.385a2.25 2.25 0 002.183 1.693h7.063a2.25 2.25 0 002.183-1.693l1.7-6.385m-15.016 0h15.016" />
+            <circle cx="9" cy="20" r="1.25" />
+            <circle cx="17" cy="20" r="1.25" />
+          </svg>
+          <span class="sr-only">Cart</span>
+        </a>
+        <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover-gold" id="mobile-nav-contact">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+  <style>
+    .nav-active {
+      background-color: #F5F5F5 !important;
+      color: #8A3324 !important;
+    }
+    .nav-active svg {
+      color: #8A3324 !important;
+      stroke: #8A3324 !important;
+    }
+  </style>
+  <script>
+  // Mobile menu toggle
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuButton.addEventListener('click', function () {
+    mobileMenu.classList.toggle('hidden');
+  });
+  // User dropdown toggle
+  const userMenuButton = document.getElementById('user-menu-button');
+  const userDropdown = document.getElementById('user-dropdown');
+  userMenuButton.addEventListener('click', function () {
+    userDropdown.classList.toggle('hidden');
+  });
+  // Active nav highlighting
+  const page = window.location.pathname.split('/').pop();
+  function setActiveNav(id) {
+    document.querySelectorAll('#nav-home, #nav-about, #nav-store, #nav-contact, #nav-cart, #mobile-nav-home, #mobile-nav-about, #mobile-nav-store, #mobile-nav-contact, #mobile-nav-cart').forEach(el => {
+      el.classList.remove('nav-active');
+    });
+    if (page === '' || page === 'index.html') {
+      document.getElementById('nav-home').classList.add('nav-active');
+      document.getElementById('mobile-nav-home').classList.add('nav-active');
+    } else if (page === 'about.html') {
+      document.getElementById('nav-about').classList.add('nav-active');
+      document.getElementById('mobile-nav-about').classList.add('nav-active');
+    } else if (page === 'store.html') {
+      document.getElementById('nav-store').classList.add('nav-active');
+      document.getElementById('mobile-nav-store').classList.add('nav-active');
+    } else if (page === 'contact.html') {
+      document.getElementById('nav-contact').classList.add('nav-active');
+      document.getElementById('mobile-nav-contact').classList.add('nav-active');
+    } else if (page === 'cart.html') {
+      document.getElementById('nav-cart').classList.add('nav-active');
+      document.getElementById('mobile-nav-cart').classList.add('nav-active');
+    }
+  }
+  setActiveNav();
+  </script>
+  <main class="max-w-7xl mx-auto py-12 px-4">
+    <h1 class="titles text-4xl font-semibold text-amber mb-8">Book Store</h1>
+    <!-- Add floating search bar at the bottom center, perfectly centered and responsive -->
+    <style>
+      #floatingSearch {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin: 0 auto !important;
+        width: 95vw;
+        max-width: 32rem;
+        z-index: 50;
+      }
+      @media (max-width: 640px) {
+        #floatingSearch {
+          flex-direction: column;
+          padding: 1rem 0.5rem;
+          width: 98vw;
+          max-width: 98vw;
+        }
+      }
+    </style>
+    <!-- Remove floating search bar -->
+    <!-- Add categories nav and search input at the top -->
+    <section class="max-w-7xl mx-auto py-8 px-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+        <div class="flex flex-wrap gap-2">
+          <button class="category-btn bg-amber text-white px-4 py-2 rounded-full font-semibold" data-category="">All</button>
+          <button class="category-btn bg-gray-200 text-amber px-4 py-2 rounded-full font-semibold" data-category="Fiction">Fiction</button>
+          <button class="category-btn bg-gray-200 text-amber px-4 py-2 rounded-full font-semibold" data-category="Nonfiction">Nonfiction</button>
+          <button class="category-btn bg-gray-200 text-amber px-4 py-2 rounded-full font-semibold" data-category="Mystery">Mystery</button>
+          <button class="category-btn bg-gray-200 text-amber px-4 py-2 rounded-full font-semibold" data-category="Romance">Romance</button>
+          <button class="category-btn bg-gray-200 text-amber px-4 py-2 rounded-full font-semibold" data-category="Sci-Fi">Sci-Fi</button>
+          <button class="category-btn bg-gray-200 text-amber px-4 py-2 rounded-full font-semibold" data-category="Fantasy">Fantasy</button>
+        </div>
+        <input id="storeSearchInput" type="text" placeholder="Search books..." class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 w-full sm:w-64" />
+      </div>
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"></div>
+    </section>
+    <!-- Modal for book details -->
+    <div id="bookModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+      <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+        <button id="closeModal" class="absolute top-2 right-2 text-gray-400 hover:text-amber text-2xl">&times;</button>
+        <img id="modalImage" src="" alt="Book cover" class="w-full h-56 object-cover rounded mb-4" />
+        <h3 id="modalTitle" class="text-2xl font-bold text-amber mb-2"></h3>
+        <p id="modalAuthor" class="text-gray-700 mb-1"></p>
+        <p id="modalCategory" class="text-sm text-gold mb-2"></p>
+        <p id="modalDescription" class="text-gray-600 mb-4"></p>
+        <p id="modalPrice" class="text-lg font-semibold text-amber mb-4"></p>
+        <button id="addToCartBtn" class="w-full bg-amber text-white py-2 rounded-md hover:bg-gold transition-colors">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+  <!-- Add enhanced footer -->
+  <footer class="bg-amber-dark text-white py-8 mt-16">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 gap-4">
+      <div class="flex flex-col items-center sm:items-start">
+        <span class="text-xl font-bold titles mb-2">The Nook</span>
+        <span>&copy; 2024 The Nook. All rights reserved.</span>
+      </div>
+      <div class="flex gap-6 mt-4 sm:mt-0">
+        <a href="about.html" class="footer-link">About</a>
+        <a href="store.html" class="footer-link">Store</a>
+        <a href="cart.html" class="footer-link flex items-center" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437m0 0l1.7 6.385a2.25 2.25 0 002.183 1.693h7.063a2.25 2.25 0 002.183-1.693l1.7-6.385m-15.016 0h15.016" />
+            <circle cx="9" cy="20" r="1.25" />
+            <circle cx="17" cy="20" r="1.25" />
+          </svg>
+          <span class="sr-only">Cart</span>
+        </a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <div class="flex gap-4 mt-4 sm:mt-0">
+        <a href="#" class="footer-link">Facebook</a>
+        <a href="#" class="footer-link">Instagram</a>
+        <a href="#" class="footer-link">Twitter</a>
+      </div>
+    </div>
+  </footer>
+  <!-- 6. Testimonials (no images, new names) -->
+  <section class="max-w-7xl mx-auto py-12 px-4">
+    <h2 class="titles text-3xl font-semibold text-amber mb-6">What Our Readers Say</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+        <p class="text-gray-700 italic mb-2">“The Nook has the best selection and the friendliest staff. I always find something new to read!”</p>
+        <span class="text-amber font-semibold">— Efren E.</span>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+        <p class="text-gray-700 italic mb-2">“Fast checkout and great prices. The online store is so easy to use!”</p>
+        <span class="text-amber font-semibold">— Ron P.</span>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+        <p class="text-gray-700 italic mb-2">“I love the recommendations and the cozy vibe. My favorite bookshop!”</p>
+        <span class="text-amber font-semibold">— John K.</span>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Book data array: TFiOS, Paper Towns, Divergent series, Hunger Games series
+    const books = [
+      { title: 'The Fault in Our Stars', author: 'John Green', price: 10.99, category: 'Romance', image: 'https://upload.wikimedia.org/wikipedia/en/a/a9/The_Fault_in_Our_Stars.jpg' },
+      { title: 'Paper Towns', author: 'John Green', price: 9.99, category: 'Fiction', image: 'https://upload.wikimedia.org/wikipedia/en/6/62/Paper_Towns_%28cover%29.png' },
+      { title: 'Divergent', author: 'Veronica Roth', price: 12.99, category: 'Sci-Fi', image: 'https://upload.wikimedia.org/wikipedia/en/d/d1/Divergent_%28book%29_by_Veronica_Roth_US_Hardcover_2011.jpg' },
+      { title: 'Insurgent', author: 'Veronica Roth', price: 12.99, category: 'Sci-Fi', image: 'https://upload.wikimedia.org/wikipedia/en/b/b6/Insurgent_%28book%29.jpg' },
+      { title: 'Allegiant', author: 'Veronica Roth', price: 12.99, category: 'Sci-Fi', image: 'https://upload.wikimedia.org/wikipedia/en/6/6e/Allegiant_%28book%29.jpg' },
+      { title: 'Four', author: 'Veronica Roth', price: 11.99, category: 'Sci-Fi', image: 'https://upload.wikimedia.org/wikipedia/en/8/8b/Four_A_Divergent_Collection_cover.jpg' },
+      { title: 'The Hunger Games', author: 'Suzanne Collins', price: 12.49, category: 'Fiction', image: 'https://upload.wikimedia.org/wikipedia/en/d/dc/The_Hunger_Games.jpg' },
+      { title: 'Catching Fire', author: 'Suzanne Collins', price: 12.49, category: 'Fiction', image: 'https://upload.wikimedia.org/wikipedia/en/5/5c/Catching_Fire_cover.jpg' },
+      { title: 'Mockingjay', author: 'Suzanne Collins', price: 12.49, category: 'Fiction', image: 'https://upload.wikimedia.org/wikipedia/en/4/4c/Mockingjay.JPG' },
+      { title: 'The Ballad of Songbirds and Snakes', author: 'Suzanne Collins', price: 13.99, category: 'Fiction', image: 'https://upload.wikimedia.org/wikipedia/en/3/3b/The_Ballad_of_Songbirds_and_Snakes_%28Suzanne_Collins%29.png' }
+    ];
+    // Filtering logic
+    let currentCategory = '';
+    function renderBooks() {
+      const grid = document.getElementById('productGrid');
+      const search = document.getElementById('storeSearchInput').value.toLowerCase();
+      let filtered = books.filter(book => {
+        const matchesCategory = !currentCategory || book.category === currentCategory;
+        const matchesSearch = !search || book.title.toLowerCase().includes(search) || book.author.toLowerCase().includes(search);
+        return matchesCategory && matchesSearch;
+      });
+      grid.innerHTML = '';
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="col-span-4 text-center text-gray-500">No books found.</div>';
+        return;
+      }
+      filtered.forEach((book, i) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow-md overflow-hidden flex flex-col';
+        card.innerHTML = `
+          <img src="${book.image}" alt="Book cover" class="w-full h-48 object-cover" />
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="text-lg font-semibold text-amber">${book.title}</h3>
+            <p class="text-sm/6 text-gray-700">${book.author}</p>
+            <p class="text-sm/6 text-gold mb-2">${book.category}</p>
+            <p class="text-sm/6 text-gray-700">$${book.price.toFixed(2)}</p>
+            <button class="mt-4 w-full bg-amber text-white py-2 rounded-md hover:bg-gold transition-colors add-to-cart" data-id="${i}">Add to Cart</button>
+          </div>
+        `;
+        card.querySelector('.add-to-cart').addEventListener('click', () => addToCart(i));
+        grid.appendChild(card);
+      });
+    }
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('bg-amber', 'text-white'));
+        this.classList.add('bg-amber', 'text-white');
+        currentCategory = this.getAttribute('data-category');
+        renderBooks();
+      });
+    });
+    document.getElementById('storeSearchInput').addEventListener('input', renderBooks);
+    renderBooks();
+    // Modal logic
+    const bookModal = document.getElementById('bookModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    function openBookModal(id) {
+      const book = books[id]; // Use the index from the data array
+      if (!book) return;
+      document.getElementById('modalImage').src = book.image;
+      document.getElementById('modalTitle').textContent = book.title;
+      document.getElementById('modalAuthor').textContent = book.author;
+      document.getElementById('modalCategory').textContent = book.category;
+      // For simplicity, no description or price in this modal as they are not in the new data
+      document.getElementById('modalDescription').textContent = '';
+      document.getElementById('modalPrice').textContent = `$${book.price.toFixed(2)}`;
+      document.getElementById('addToCartBtn').onclick = () => addToCart(id);
+      bookModal.classList.remove('hidden');
+    }
+    closeModalBtn.addEventListener('click', () => bookModal.classList.add('hidden'));
+    window.addEventListener('click', (e) => {
+      if (e.target === bookModal) bookModal.classList.add('hidden');
+    });
+    // Cart logic
+    function getCart() {
+      return JSON.parse(localStorage.getItem('cart') || '[]');
+    }
+    function setCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+    function addToCart(id) {
+      let cart = getCart();
+      const book = books[id]; // Use the index from the data array
+      if (!book) return;
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...book, id: id, qty: 1 }); // Ensure id is unique for cart items
+      }
+      setCart(cart);
+      alert('Added to cart!');
+    }
+    function updateCartCount() {
+      // Optionally update cart icon if present
+    }
+  </script>
+</body>
+</html> 
